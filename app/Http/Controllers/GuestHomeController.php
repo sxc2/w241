@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
-class HomeController extends Controller
+use App\Record;
+use Carbon\Carbon;
+
+class GuestHomeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -13,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -21,8 +25,47 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
+    public function index() {
+        $data = [];
+        $data['variation'] = round(microtime(true)) % 2;
+
+        return view('start', $data);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function end() {
+        $data = [];
+        $data['records'] = Record::get();
+
+        return view('end', $data);
+    }
+
+    /**
+     * 
+     */
+    public function records_update() {
+        $answers = Input::has('answers') ? Input::get('answers') : null;
+        $correct = Input::has('correct') ? Input::get('correct') : 0;
+        $total = Input::has('total') ? Input::get('total') : 0;
+        $started_at = Input::has('started_at') ? Input::get('started_at') : null;
+        $finished_at = Input::has('finished_at') ? Input::get('finished_at') : null;
+        $variation = Input::has('variation') ? Input::get('variation') : 0;
+        $test = Input::has('test') ? Input::get('test') : 1;
+
+        $record = Record::create([
+            'answers' => $answers,
+            'correct' => $correct,
+            'total' => $total,
+            'started_at' => Carbon::createFromFormat('D M d Y H:i:s e+', $started_at),
+            'finished_at' => Carbon::createFromFormat('D M d Y H:i:s e+', $finished_at),
+            'variation' => $variation,
+            'test' => $test,
+         ]);
+
+        return json_encode($record);
     }
 }

@@ -18,4 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/startt', 'GuestHomeController@index')->name('start');
+Route::get('/start', 'GuestHomeController@index')->name('start');
+Route::get('/end', 'GuestHomeController@end')->name('end');
+
+Route::post('/records_update', 'GuestHomeController@records_update')->name('records_update');
