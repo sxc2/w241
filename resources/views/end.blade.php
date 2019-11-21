@@ -36,6 +36,7 @@
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">treatment</th>
+                          <th scope="col">age</th>
                           <th scope="col">correct</th>
                           <th scope="col">total</th>
                           <th scope="col">started</th>
@@ -48,6 +49,7 @@
                         <tr>
                           <th scope="row">{{$record->id}}</th>
                           <td>{{$record->variation}}</td>
+                          <td>{{$record->age}}</td>
                           <td>{{$record->correct}}</td>
                           <td>{{$record->total}}</td>
                           <td>{{$record->started_at}}</td>

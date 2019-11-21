@@ -17,7 +17,7 @@
 
     var answers = [];
     var correct = 0;
-    var total = 0;
+    var total = 1;
 
     function getshortdate(dt) {
          return dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
