@@ -70,7 +70,7 @@
       number2 = Math.floor(Math.random() * max) + 10;
       $('#question-sign').text('+');
 
-      if (total >= (numberquestions - 2)) {
+      if (total > (numberquestions - 2)) {
         number1 = Math.floor(Math.random() * 10) + 10;
         number2 = Math.floor(Math.random() * max) + 10;  
         $('#question-sign').text('*');
