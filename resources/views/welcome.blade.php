@@ -37,6 +37,11 @@
       font-weight: 700;
     }
 </style>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#proceed').delay(1000).show(1000);   
+    });
+</script>
 @endpush
 
 @section('content')
@@ -57,7 +62,7 @@
         <h1 class="cover-heading">Test your math!</h1>
         <p class="lead">Take this short 5 minute math quiz.</p>
         <p class="lead">
-          <a href="/start" class="btn btn-lg btn-primary">Start Now</a>
+          <a href="/start" id="proceed" name="proceed" class="btn btn-lg btn-primary" style="display: none;">Start Now</a>
         </p>
       </main>
 
