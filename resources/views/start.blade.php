@@ -4,7 +4,7 @@
 @push('page-styles')
 <script type="text/javascript">
     var max = 90;
-    var numberquestions = 1;
+    var numberquestions = 6;
     var variation = {{$variation}};
 
     var number1 = null;
