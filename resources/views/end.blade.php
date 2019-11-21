@@ -2,7 +2,13 @@
 
 
 @push('page-styles')
-
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#showResponses').click(function() {
+            $('.table').toggle();
+        });            
+    });
+</script>
 @endpush
 
 @section('content')
@@ -14,12 +20,18 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-danger" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
+                    <div class="alert alert-success" role="alert">
+                        Thank you for taking our quiz! :)
+                    </div>
+                    <p>
+                        <button class="btn btn-sm btn-default" name="showResponses" id="showResponses">View Responses</button>
+                    </p>
 
-                    <table class="table">
+                    <table class="table" style="display: none;">
                       <thead>
                         <tr>
                           <th scope="col">#</th>

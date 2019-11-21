@@ -3,8 +3,8 @@
 
 @push('page-styles')
 <script type="text/javascript">
-    var max = 9;
-    var numberquestions = 2;
+    var max = 100;
+    var numberquestions = 5;
     var variation = {{$variation}};
 
     var number1 = null;
@@ -24,7 +24,14 @@
     }
 
     function calculateInput(newquestion) {
+      var sign = $('#question-sign').text();
+
+      if (sign == '+') {
         answer = number2 + number1;
+      } else {
+        answer = number2 * number1;  
+      }
+
         var unit = {};
         unit['startTime'] = getshortdate(startTime);
         unit['endTime'] = getshortdate(new Date($.now()));
@@ -44,14 +51,21 @@
     }
 
     function initializeInputTimers() {
-        number1 = Math.floor(Math.random() * max) + 1;
-        number2 = Math.floor(Math.random() * max) + 1;
+      number1 = Math.floor(Math.random() * max) + 1;
+      number2 = Math.floor(Math.random() * max) + 1;
+      $('#question-sign').text('+');
+
+      if (total >= (numberquestions - 2)) {
+        number1 = Math.floor(Math.random() * 10) + 1;
+        number2 = Math.floor(Math.random() * max) + 1;  
+        $('#question-sign').text('*');
+      }
         
-        $('#number1').text(number1);
-        $('#number2').text(number2);
-        $('#answer').val("");
-        startTime = new Date($.now());
-        $('#submit').removeClass('disabled');
+      $('#number1').text(number1);
+      $('#number2').text(number2);
+      $('#answer').val("");
+      startTime = new Date($.now());
+      $('#submit').removeClass('disabled');
     }
 
     $(document).ready(function(){
@@ -121,7 +135,7 @@
                     @endif
 
                     <h1>
-                        <div id="question" name="question"><span id="number1"></span> + <span id="number2"></span> = </div>
+                        <div id="question" name="question"><span id="number1"></span> <span id="question-sign">+</span> <span id="number2"></span> = </div>
                         <div class="input-group mb-3">
                           <input type="number" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2" id="answer" name="answer">
                           <div class="input-group-append">
