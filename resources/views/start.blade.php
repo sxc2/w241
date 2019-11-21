@@ -3,7 +3,7 @@
 
 @push('page-styles')
 <script type="text/javascript">
-    var max = 100;
+    var max = 90;
     var numberquestions = 5;
     var variation = {{$variation}};
 
@@ -51,13 +51,13 @@
     }
 
     function initializeInputTimers() {
-      number1 = Math.floor(Math.random() * max) + 1;
-      number2 = Math.floor(Math.random() * max) + 1;
+      number1 = Math.floor(Math.random() * max) + 10;
+      number2 = Math.floor(Math.random() * max) + 10;
       $('#question-sign').text('+');
 
       if (total >= (numberquestions - 2)) {
-        number1 = Math.floor(Math.random() * 10) + 1;
-        number2 = Math.floor(Math.random() * max) + 1;  
+        number1 = Math.floor(Math.random() * 10) + 10;
+        number2 = Math.floor(Math.random() * max) + 10;  
         $('#question-sign').text('*');
       }
         
