@@ -39,7 +39,20 @@
 </style>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#proceed').delay(1000).show(1000);   
+        $("input").on('input', function() {
+            if ($('#age').val() && $('#gender').val()) {
+                $('#proceed').removeClass('disabled');
+                // $('#proceed').show(); 
+            } else {
+                $('#proceed').addClass('disabled');
+                // $('#proceed').hide();   
+            }
+        }); 
+       
+        $('#proceed').click(function() {
+            location.href = '/start' + "?age=" + $('#age').val() + "&gender=" + $('#gender').val();
+        });
+        // $('#proceed').delay(1000).show(1000);   
     });
 </script>
 @endpush
@@ -61,9 +74,18 @@
         <br><br>
         <h1 class="cover-heading">Test your math!</h1>
         <p class="lead">Take this short 5 minute math quiz.</p>
-        <p class="lead">
-          <a href="/start" id="proceed" name="proceed" class="btn btn-lg btn-primary" style="display: none;">Start Now</a>
-        </p>
+        <div class="well">
+            <div class="alert alert-warning" role="alert" style="text-shadow: none;">
+                Add your age and gender to begin.
+            </div>
+
+            <small>Age:</small>
+            <input type="number" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2" id="age" name="age">
+            <small>Gender:</small>
+            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2" id="gender" name="gender">
+            <br><br>
+            <a id="proceed" name="proceed" class="btn btn-lg btn-primary disabled">Start Now</a>
+        </div>
       </main>
 
 {{--       <footer class="mastfoot mt-auto">

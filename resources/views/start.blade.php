@@ -4,7 +4,7 @@
 @push('page-styles')
 <script type="text/javascript">
     var max = 90;
-    var numberquestions = 5;
+    var numberquestions = 1;
     var variation = {{$variation}};
 
     var number1 = null;
@@ -21,6 +21,21 @@
 
     function getshortdate(dt) {
          return dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+    }
+
+    function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
     }
 
     function calculateInput(newquestion) {
@@ -66,6 +81,7 @@
       $('#answer').val("");
       startTime = new Date($.now());
       $('#submit').removeClass('disabled');
+      $('#submit').show();
     }
 
     $(document).ready(function(){
@@ -74,6 +90,7 @@
 
         $('#submit').click(function() {
             $('#submit').addClass('disabled');
+            $('#submit').hide();
             if (total < numberquestions) {
                 calculateInput(true);
             } else {
@@ -98,7 +115,9 @@
                         started_at: startTimeAll,
                         finished_at: new Date($.now()),
                         variation: variation,
-                        test: 1
+                        test: 1,
+                        age: getUrlParameter("age"),
+                        gender: getUrlParameter("gender")
                     },
                     async: true,
                 }).done(function(data, status, jqXHR) {
@@ -129,7 +148,11 @@
                     @endif
 
                     @if ($variation == 1)
-                      <div class="alert alert-warning" role="alert">
+                      <div class="alert alert-success" role="alert">
+                        90% of test taker answered all questions correctly.
+                      </div>
+                    @elseif ($variation == 2)
+                      <div class="alert alert-danger" role="alert">
                         90% of test taker answered all questions correctly.
                       </div>
                     @endif

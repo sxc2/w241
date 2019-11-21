@@ -27,7 +27,7 @@ class GuestHomeController extends Controller
      */
     public function index() {
         $data = [];
-        $data['variation'] = round(microtime(true)) % 2;
+        $data['variation'] = round(microtime(true)) % 3;
 
         return view('start', $data);
     }
@@ -55,6 +55,8 @@ class GuestHomeController extends Controller
         $finished_at = Input::has('finished_at') ? Input::get('finished_at') : null;
         $variation = Input::has('variation') ? Input::get('variation') : 0;
         $test = Input::has('test') ? Input::get('test') : 1;
+        $age = Input::has('age') ? Input::get('age') : null;
+        $gender = Input::has('gender') ? Input::get('gender') : null;
 
         $record = Record::create([
             'answers' => $answers,
@@ -64,6 +66,9 @@ class GuestHomeController extends Controller
             'finished_at' => Carbon::createFromFormat('D M d Y H:i:s e+', $finished_at),
             'variation' => $variation,
             'test' => $test,
+            'age' => $age,
+            'gender' => $gender,
+            'ip' => \Request::ip()
          ]);
 
         return json_encode($record);

@@ -16,5 +16,8 @@ class Record extends Model {
         'finished_at',
         'variation',
         'test',
+        'age',
+        'gender',
+        'ip',
     ];
 }
