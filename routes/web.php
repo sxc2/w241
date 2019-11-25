@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/prep', 'GuestHomeController@prep')->name('prep');
 Route::get('/start', 'GuestHomeController@index')->name('start');
 Route::get('/end', 'GuestHomeController@end')->name('end');
 

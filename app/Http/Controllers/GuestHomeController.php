@@ -27,7 +27,7 @@ class GuestHomeController extends Controller
      */
     public function index() {
         $data = [];
-        $data['variation'] = round(microtime(true)) % 3;
+        // $data['variation'] = round(microtime(true)) % 2;
 
         return view('start', $data);
     }
@@ -42,6 +42,18 @@ class GuestHomeController extends Controller
         $data['records'] = Record::get();
 
         return view('end', $data);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function prep() {
+        $data = [];
+        $data['variation'] = round(microtime(true)) % 2;
+
+        return view('prep', $data);
     }
 
     /**

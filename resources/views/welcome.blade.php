@@ -36,11 +36,20 @@
       padding: .75rem 1.25rem;
       font-weight: 700;
     }
+
+    input[type=radio] {
+        display: block;
+        margin: 0 auto;
+        margin-right: 10px;
+    }
+    label {
+        display: inline-block;
+    }
 </style>
 <script type="text/javascript">
     $(document).ready(function(){
         $("input").on('input', function() {
-            if ($('#age').val() && $('#gender').val()) {
+            if ($('#age').val() && $('#gender').val() && $('#location').val() && $( "input#motivation_before:checked" ).val() && $( "input#good_at_math:checked" ).val()) {
                 $('#proceed').removeClass('disabled');
                 // $('#proceed').show(); 
             } else {
@@ -50,9 +59,8 @@
         }); 
        
         $('#proceed').click(function() {
-            location.href = '/start' + "?age=" + $('#age').val() + "&gender=" + $('#gender').val();
+            location.href = '/prep' + "?age=" + $('#age').val() + "&gender=" + $('#gender').val() + "&motivation_before=" + $('input#motivation_before:checked').val() + "&good_at_math=" + $('input#good_at_math:checked').val()  + "&location=" + $('#location').val();
         });
-        // $('#proceed').delay(1000).show(1000);   
     });
 </script>
 @endpush
@@ -79,10 +87,25 @@
                 Add your age and gender to begin.
             </div>
 
-            <small>Age:</small>
-            <input type="number" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2" id="age" name="age">
-            <small>Gender:</small>
-            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2" id="gender" name="gender">
+            <small>Age (required):</small>
+            <input type="number" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2" id="age" name="age" required><br>
+            <small>Gender (required):</small>
+            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2" id="gender" name="gender" required><br>
+            <small>Location (Country or State) (required):</small>
+            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2" id="location" name="location" required><br>
+            <small>Current level of motivation (required):</small> <br>
+            <div>
+                <label><input type="radio" name="motivation_before" id="motivation_before" value="1" required> 1 </label>
+                <label><input type="radio" name="motivation_before" id="motivation_before" value="2" required> 2 </label>
+                <label><input type="radio" name="motivation_before" id="motivation_before" value="3" required> 3 </label>
+                <label><input type="radio" name="motivation_before" id="motivation_before" value="4" required> 4 </label>
+                <label><input type="radio" name="motivation_before" id="motivation_before" value="5" required> 5 </label>
+            </div>
+            <small>Do you onsider yourself good at math? (required)</small><br>
+            <div>
+                <label><input type="radio" name="good_at_math" id="good_at_math" value="1"> Yes </label>
+                <label><input type="radio" name="good_at_math" id="good_at_math" value="0"> No </label>
+            </div>
             <br><br>
             <a id="proceed" name="proceed" class="btn btn-lg btn-primary disabled">Start Now</a>
         </div>

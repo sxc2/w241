@@ -147,16 +147,6 @@
                         </div>
                     @endif
 
-                    @if ($variation == 1)
-                      <div class="alert alert-success" role="alert">
-                        90% of test taker answered all questions correctly.
-                      </div>
-                    @elseif ($variation == 2)
-                      <div class="alert alert-danger" role="alert">
-                        90% of test taker answered all questions correctly.
-                      </div>
-                    @endif
-
                     <h1>
                         <div id="question" name="question"><span id="number1"></span> <span id="question-sign">+</span> <span id="number2"></span> = </div>
                         <div class="input-group mb-3">

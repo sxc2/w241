@@ -22,6 +22,10 @@ class CreateRecordsTable extends Migration
             $table->tinyInteger('gender')->nullable();
             $table->tinyInteger('correct')->nullable();
             $table->tinyInteger('total')->nullable();
+            $table->tinyInteger('good_at_math')->nullable();
+            $table->tinyInteger('motivation_before')->nullable();
+            $table->tinyInteger('motivation_after')->nullable();
+            $table->string('location')->nullable();
             $table->string('ip')->nullable();
             $table->string('notes')->nullable();
             $table->string('answers', 2000)->nullable();
